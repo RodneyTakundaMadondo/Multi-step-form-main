@@ -33,35 +33,40 @@ body {
     font-family: $ff-primary;
     position: relative;
 }
-.active{
+
+.active {
     display: flex !important;
 }
-.active-plan{
+
+.active-plan {
     border: 1px solid $focus-color !important;
     background-color: hsl(230, 75%, 98%);
 }
-.option-error{
+
+.option-error {
     display: none;
     font-size: 0.8rem;
     font-weight: $fw-700;
-} 
-.option-error.enabled-error{ // error style
-    color:$strawberryred;
+}
+
+.option-error.enabled-error {
+    // error style
+    color: $strawberryred;
     display: inline-block !important;
 }
-.hidden{
+
+.hidden {
     display: none;
 }
+
 .main {
     position: relative;
-    min-width: 300px;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: min(100%, 300px);
     background-color: $magnolia;
-
-  
 }
+
 .button-container {
     position: fixed;
     bottom: 0;
@@ -72,8 +77,8 @@ body {
     padding: 1rem;
     display: flex;
     align-items: center;
-    justify-content:flex-start;
-    
+    justify-content: flex-start;
+
     .previous-step {
         background-color: transparent;
         border: none;
@@ -92,41 +97,45 @@ body {
         margin-left: auto;
     }
 }
+
 .image-form {
     position: relative;
     min-width: 300px;
     padding-bottom: 2rem;
+
     .sidebar {
         background-image: url('../assets/images/bg-sidebar-mobile.svg');
         background-repeat: no-repeat;
         background-size: cover;
-      .container{
-       
-        min-height: 10rem;
-        display: flex;
-        justify-content: center;
-        gap: 1rem;
 
-        .pagination-indicator {
-            margin-top: 2rem;
-            .number {
-                height: 1.8rem;
-                width: 1.8rem;
-                border-radius: 50%;
-                background-color: transparent;
-                border: 1px solid $lightblue;
-                color: $lightblue;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 1rem;
-            }
+        .container {
 
-            .step-description {
-                display: none;
+            min-height: 10rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+
+            .pagination-indicator {
+                margin-top: 2rem;
+
+                .number {
+                    height: 1.8rem;
+                    width: 1.8rem;
+                    border-radius: 50%;
+                    background-color: transparent;
+                    border: 1px solid $lightblue;
+                    color: $lightblue;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 1rem;
+                }
+
+                .step-description {
+                    display: none;
+                }
             }
         }
-      }
     }
 
     .form-container {
@@ -138,8 +147,8 @@ body {
         margin-inline: auto;
         left: 0;
         right: 0;
-        padding:1rem;
-        
+        padding: 1rem;
+
         .step {
             flex-direction: column;
             flex-wrap: wrap;
@@ -156,19 +165,23 @@ body {
                 color: $coolgray;
             }
 
-             .first-step-label {
+            .first-step-label {
                 display: flex;
                 flex-direction: column;
-                .label-error{
+
+                .label-error {
                     display: flex;
                     justify-content: space-between;
-                    .error{
+
+                    .error {
                         display: none;
                         font-size: 0.8rem;
                         font-weight: $fw-700;
-                    } 
-                    .error.enabled-error{ // error style
-                        color:$strawberryred;
+                    }
+
+                    .error.enabled-error {
+                        // error style
+                        color: $strawberryred;
                         display: inline-block !important;
                     }
                 }
@@ -193,9 +206,11 @@ body {
                 border: 1px solid $coolgray;
                 padding: 1rem;
                 border-radius: 10px;
-                input[type="radio"]{
+
+                input[type="radio"] {
                     display: none;
                 }
+
                 .plan {
                     h4 {
                         color: $marineblue;
@@ -262,16 +277,19 @@ body {
             }
         }
     }
-    .step.select-plan{
-        .options{
+
+    .step.select-plan {
+        .options {
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            .plan{
-                .price{
-                    display:block;
+
+            .plan {
+                .price {
+                    display: block;
                 }
-                .promo-msg{
+
+                .promo-msg {
                     font-size: 0.8rem;
                     font-weight: $fw-500;
                     color: $marineblue;
@@ -281,19 +299,22 @@ body {
 
         }
     }
+
     .step.add-ons {
         .option {
             display: flex !important;
             align-items: center;
             padding-inline: 1rem !important;
             gap: 0rem;
-            .icon-description{
+
+            .icon-description {
                 display: flex;
                 flex-wrap: nowrap;
                 align-items: center;
                 gap: 2rem;
                 flex: 1 0 70%;
             }
+
             .plan {
                 line-height: 1.5;
 
@@ -301,12 +322,13 @@ body {
                     color: $marineblue;
                     font-weight: $fw-700;
                     font-size: 0.9rem !important;
-                   
+
                 }
-                span{
+
+                span {
                     font-size: 0.875rem;
                 }
-               
+
             }
 
             .interval-payment {
@@ -392,6 +414,15 @@ body {
             .plan {
                 position: relative;
 
+                .plan-choice {
+                    color: $marineblue;
+                    font-weight: $fw-700;
+
+                    &-price {
+                        @extend .plan-choice;
+                    }
+                }
+
                 .inner {
                     span {
                         display: block;
@@ -426,8 +457,11 @@ body {
             .add-ons {
                 .inner {
                     span {
-                        color: $coolgray;  
+                        color: $coolgray;
                     }
+                }
+                .chosen-addon-price{
+                    color: $marineblue;
                 }
             }
 
@@ -437,18 +471,24 @@ body {
             display: flex;
             justify-content: space-between;
             padding: 1rem;
+            .pricer{
+                color: $purplishblue;
+                font-weight: $fw-700;
+            }
             .inner {
                 span {
-                    color: $coolgray;  
+                    color: $coolgray;
                 }
             }
         }
     }
-    .step.thank-you{
+
+    .step.thank-you {
         display: none;
         align-items: center;
         justify-content: center;
-        p{
+
+        p {
             text-align: center;
             line-height: 1.5;
             color: $coolgray;

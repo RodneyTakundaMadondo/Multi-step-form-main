@@ -37,10 +37,9 @@ body {
 
 .main {
   position: relative;
-  min-width: 300px;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: min(100%, 300px);
   background-color: hsl(217, 100%, 97%);
 }
 
@@ -329,6 +328,10 @@ body {
 .image-form .step.finish .pricing-details .plan {
   position: relative;
 }
+.image-form .step.finish .pricing-details .plan .plan-choice, .image-form .step.finish .pricing-details .plan .plan-choice-price {
+  color: hsl(213, 96%, 18%);
+  font-weight: 700;
+}
 .image-form .step.finish .pricing-details .plan .inner span {
   display: block;
   margin-bottom: 12px;
@@ -354,10 +357,17 @@ body {
 .image-form .step.finish .pricing-details .add-ons .inner span {
   color: hsl(231, 11%, 63%);
 }
+.image-form .step.finish .pricing-details .add-ons .chosen-addon-price {
+  color: hsl(213, 96%, 18%);
+}
 .image-form .step.finish .total-pricing {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+}
+.image-form .step.finish .total-pricing .pricer {
+  color: hsl(243, 100%, 62%);
+  font-weight: 700;
 }
 .image-form .step.finish .total-pricing .inner span {
   color: hsl(231, 11%, 63%);

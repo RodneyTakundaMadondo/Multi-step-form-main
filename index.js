@@ -56,7 +56,26 @@ nextBtn.addEventListener("click", (n) => {
     if (n == 1 && !validateInputs()) return false;
     steps[currentStep].style.display = 'none';
     currentStep = currentStep + n;
-   
+     if(currentStep ===3 ){
+        //Get the plan price 
+        //get the addon prices
+        //add them up and dumb value into pricer
+        let pricer = document.querySelector(".pricer")
+        let planPrice = document.querySelector(".plan-choice-price");
+        let inter = planPrice.textContent.slice(planPrice.textContent.length -2)
+        let chosenPrices = document.querySelectorAll(".chosen-addon-price");
+        planPrice = Number(planPrice.textContent.match(/\d+/g)[0]);
+        let values = [];
+        values.push(planPrice);
+        chosenPrices.forEach((chosenPrice)=>{
+           values.push(Number(chosenPrice.textContent.match(/\d+/g)[0]))
+        })
+        let sum = values.reduce((a,c)=>{
+            return a + c;
+        },0)
+        pricer.textContent = `+$${sum}/${inter}`;
+
+     }
     if (currentStep >=4) {
         showTab(currentStep);
         setTimeout(()=>{
@@ -90,6 +109,38 @@ nextBtn.addEventListener("click", (n) => {
             planChoicePrice.textContent = "$15/mo";
         }
     }
+    // checkboxes addon
+if(currentStep == 2){
+    addOnCheckBoxs.forEach((addOnBox) => {
+        addOnBox.addEventListener("change", () => {
+            let value = addOnBox.value; //the checkbox value
+            const price = Number(addOnBox.closest(".option").querySelector(".interval-price").textContent.match(/\d+/g)[0]);
+         
+            //checkboxes add border and bgc to container 
+            if (addOnBox.checked) {
+                addOnBox.parentElement.parentElement.parentElement.parentElement.classList.add("active-plan");
+                //there is only three options that can be checked yes,
+                const addOnElement = document.createElement("div");
+                addOnElement.classList.add("add-ons");
+                addOnElement.setAttribute('data-addon',addOnBox.id);
+                let intre = intervalToggle.checked ? "yr" : "mo"
+                addOnElement.innerHTML = `
+                    <div class="inner">
+                      <span class="chosen-addon">${value}</span>
+                    </div>
+                    <span class="chosen-addon-price">$${price}/${intre}</span>
+                `
+                addOnParentContainer.appendChild(addOnElement);
+            } else {
+                addOnBox.parentElement.parentElement.parentElement.parentElement.classList.remove("active-plan");
+                const addOnElement = addOnParentContainer.querySelector(`[data-addon="${addOnBox.id}"]`);
+                if(addOnElement){
+                    addOnParentContainer.removeChild(addOnElement);
+                }
+            }
+        })
+    })
+}
 })
 prevBtn.addEventListener("click", (n) => {
     steps[currentStep].style.display = "none";
@@ -230,34 +281,7 @@ const addOnContainers = document.querySelectorAll(".step.add-ons .option");
 const addOnParentContainer = document.querySelector(".add-on-container");
 
 
-addOnCheckBoxs.forEach((addOnBox) => {
-    addOnBox.addEventListener("change", () => {
-        let value = addOnBox.value; //the checkbox value
-        const price = addOnBox.closest(".option").querySelector(".interval-price").textContent;
-        //checkboxes add border and bgc to container 
-        if (addOnBox.checked) {
-            addOnBox.parentElement.parentElement.parentElement.parentElement.classList.add("active-plan");
-            //there is only three options that can be checked yes,
-            const addOnElement = document.createElement("div");
-            addOnElement.classList.add("add-ons");
-            addOnElement.setAttribute('data-addon',addOnBox.id);
-            
-            addOnElement.innerHTML = `
-                <div class="inner">
-                  <span class="chosen-addon">${value}</span>
-                </div>
-                <span class="chosen-addon-price">${price}</span>
-            `
-            addOnParentContainer.appendChild(addOnElement);
-        } else {
-            addOnBox.parentElement.parentElement.parentElement.parentElement.classList.remove("active-plan");
-            const addOnElement = addOnParentContainer.querySelector(`[data-addon="${addOnBox.id}"]`);
-            if(addOnElement){
-                addOnParentContainer.removeChild(addOnElement);
-            }
-        }
-    })
-})
+
 function cutHtml(){
     const form  = document.querySelector(".form");
     const buttonContainer = document.querySelector(".button-container");
