@@ -1,0 +1,137 @@
+@use "small";
+
+@media (min-width:768px) {
+    .main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: static;
+        min-height: 100vh;
+
+        .image-form {
+            display: flex;
+            width: min(950px, 100%);
+            gap: 6rem;
+            border-radius: 10px;
+            padding: 1rem;
+            background-color: small.$white;
+            min-height: 554px;
+            position: static;
+
+
+            .sidebar {
+                background-image: url('../assets/images/bg-sidebar-desktop.svg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                padding: 2rem;
+                display: block;
+                border-radius: 10px;
+
+
+                .container {
+                    background-size: cover;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 12rem;
+
+                    .pagination-indicator {
+                        display: flex;
+                        gap: 1rem;
+                        width: 100%;
+                        margin-top: auto;
+                        margin-bottom: 1rem;
+                      
+                        .step-description {
+                            display: flex;
+                            flex-direction: column;
+                            &-title{
+                                color: white;
+                                opacity: 0.6;
+                                text-transform: uppercase;
+                                font-size: 0.75rem;
+                                line-height:1rem;
+                            }
+                            .description{
+                                text-transform: uppercase;
+                                font-size: 0.875rem;
+                                color: white;
+                                font-weight: small.$fw-700;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            .form-container {
+                position: static;
+                width: min(500px, 100%);
+                margin-inline: 0;
+                margin-top: 2rem;
+                .form{
+                    height: 100%;
+                }
+                .step {
+                    h1 {
+                        font-size: 2rem;
+                    }
+
+                    p {
+                        margin-bottom: 1rem;
+                    }
+
+                    .first-step-label {
+                        .label-error {
+                            margin-bottom: 1rem;
+
+                            .label {
+                                color: small.$marineblue;
+                                font-weight: small.$fw-500;
+                            }
+                        }
+
+                        input {
+                            padding: 1rem;
+                            font-size: 1.2rem;
+                            font-weight: small.$fw-700;
+                            color: small.$marineblue;
+                        }
+
+                        input:focus {
+                            border: 2px solid small.$focus-color;
+                            outline: none;
+                            box-shadow: 0 0 5px rgba(small.$focus-color, 0.5);
+                        }
+                    }
+
+                }
+                .step.select-plan{
+          
+                    .options{
+                        flex-direction: row;
+                        justify-content: space-between;
+                        .option{
+                           flex-direction: column;
+                           align-items: flex-start; 
+                            flex: 1 0 auto;
+                            padding-block: 2rem;
+                            .plan > *{
+                                margin-bottom: 0.5rem;
+                            }
+                            .icon{
+                                margin-bottom: 2rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .button-container {
+        position: relative;
+        top: 2rem;
+        bottom: auto;
+    }
+}

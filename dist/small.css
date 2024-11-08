@@ -1,0 +1,383 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(217, 100%, 97%);
+  font-family: "Ubuntu", sans-serif;
+  position: relative;
+}
+
+.active {
+  display: flex !important;
+}
+
+.active-plan {
+  border: 1px solid hsl(245, 31%, 44%) !important;
+  background-color: hsl(230, 75%, 98%);
+}
+
+.option-error {
+  display: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.option-error.enabled-error {
+  color: hsl(354, 84%, 57%);
+  display: inline-block !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.main {
+  position: relative;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: hsl(217, 100%, 97%);
+}
+
+.button-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: hsl(0, 0%, 100%);
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.button-container .previous-step {
+  background-color: transparent;
+  border: none;
+  color: hsl(231, 11%, 63%);
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.button-container .next-step {
+  background-color: hsl(213, 96%, 18%);
+  color: white;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 5px;
+  margin-left: auto;
+}
+
+.image-form {
+  position: relative;
+  min-width: 300px;
+  padding-bottom: 2rem;
+}
+.image-form .sidebar {
+  background-image: url("../assets/images/bg-sidebar-mobile.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.image-form .sidebar .container {
+  min-height: 10rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.image-form .sidebar .container .pagination-indicator {
+  margin-top: 2rem;
+}
+.image-form .sidebar .container .pagination-indicator .number {
+  height: 1.8rem;
+  width: 1.8rem;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid hsl(206, 94%, 87%);
+  color: hsl(206, 94%, 87%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+}
+.image-form .sidebar .container .pagination-indicator .step-description {
+  display: none;
+}
+.image-form .form-container {
+  position: absolute;
+  top: 6rem;
+  background-color: hsl(0, 0%, 100%);
+  width: min(1000px, 100% - 2rem);
+  border-radius: 10px;
+  margin-inline: auto;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+}
+.image-form .form-container .step {
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1rem;
+  display: none;
+}
+.image-form .form-container .step h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: hsl(213, 96%, 18%);
+}
+.image-form .form-container .step .instructions {
+  color: hsl(231, 11%, 63%);
+}
+.image-form .form-container .step .first-step-label {
+  display: flex;
+  flex-direction: column;
+}
+.image-form .form-container .step .first-step-label .label-error {
+  display: flex;
+  justify-content: space-between;
+}
+.image-form .form-container .step .first-step-label .label-error .error {
+  display: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.image-form .form-container .step .first-step-label .label-error .error.enabled-error {
+  color: hsl(354, 84%, 57%);
+  display: inline-block !important;
+}
+.image-form .form-container .step .first-step-label input {
+  display: block;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border: 1px solid hsl(231, 11%, 63%);
+  border-radius: 5px;
+  font-family: inherit;
+}
+.image-form .form-container .step .first-step-label input:focus {
+  outline: hsl(245, 31%, 44%);
+}
+.image-form .form-container .step .option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid hsl(231, 11%, 63%);
+  padding: 1rem;
+  border-radius: 10px;
+}
+.image-form .form-container .step .option input[type=radio] {
+  display: none;
+}
+.image-form .form-container .step .option .plan h4 {
+  color: hsl(213, 96%, 18%);
+  font-weight: 700;
+  font-size: 1rem;
+}
+.image-form .form-container .step .option .plan .price {
+  color: hsl(231, 11%, 63%);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.image-form .form-container .step .toggle-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  background-color: hsl(217, 100%, 97%);
+  border-radius: 10px;
+}
+.image-form .form-container .step .toggle-container .toggle {
+  position: relative;
+  height: 20px;
+  width: 40px;
+}
+.image-form .form-container .step .toggle-container .toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.image-form .form-container .step .toggle-container .toggle .slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: hsl(213, 96%, 18%);
+  transition: 0.3s;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+}
+.image-form .form-container .step .toggle-container .toggle .slider::before {
+  position: absolute;
+  content: "";
+  height: 12px;
+  width: 12px;
+  background-color: hsl(0, 0%, 100%);
+  transition: 0.3s;
+  border-radius: 50%;
+  left: 2px;
+}
+.image-form .form-container .step .toggle-container .toggle input:checked + .slider::before {
+  transform: translateX(23px);
+}
+.image-form .step.select-plan .options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.image-form .step.select-plan .options .plan .price {
+  display: block;
+}
+.image-form .step.select-plan .options .plan .promo-msg {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: hsl(213, 96%, 18%);
+  display: none;
+}
+.image-form .step.add-ons .option {
+  display: flex !important;
+  align-items: center;
+  padding-inline: 1rem !important;
+  gap: 0rem;
+}
+.image-form .step.add-ons .option .icon-description {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 2rem;
+  flex: 1 0 70%;
+}
+.image-form .step.add-ons .option .plan {
+  line-height: 1.5;
+}
+.image-form .step.add-ons .option .plan h4 {
+  color: hsl(213, 96%, 18%);
+  font-weight: 700;
+  font-size: 0.9rem !important;
+}
+.image-form .step.add-ons .option .plan span {
+  font-size: 0.875rem;
+}
+.image-form .step.add-ons .option .interval-payment span {
+  color: hsl(243, 100%, 62%);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.image-form .step.add-ons .option .icon .checkbox {
+  position: relative;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+}
+.image-form .step.add-ons .option .icon .checkbox input {
+  position: absolute;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  opacity: 0;
+}
+.image-form .step.add-ons .option .icon .checkbox .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.2rem;
+  width: 1.2rem;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid hsl(231, 11%, 63%);
+  cursor: pointer;
+  margin: auto;
+  transition: all 0.3s ease-in;
+}
+.image-form .step.add-ons .option .icon .checkbox input:checked ~ .checkmark {
+  background: hsl(243, 100%, 62%);
+}
+.image-form .step.add-ons .option .icon .checkbox .checkmark::after {
+  content: "";
+  position: absolute;
+  height: 12px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+  bottom: 3px;
+  width: 7px;
+  border: solid hsl(0, 0%, 100%);
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  display: none;
+}
+.image-form .step.add-ons .option .icon .checkbox input:checked ~ .checkmark::after {
+  display: block;
+}
+.image-form .step.finish .pricing-details {
+  background-color: hsl(217, 100%, 97%);
+  border-radius: 5px;
+}
+.image-form .step.finish .pricing-details .plan,
+.image-form .step.finish .pricing-details .add-ons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+.image-form .step.finish .pricing-details .plan {
+  position: relative;
+}
+.image-form .step.finish .pricing-details .plan .inner span {
+  display: block;
+  margin-bottom: 12px;
+}
+.image-form .step.finish .pricing-details .plan .inner span .link {
+  color: hsl(231, 11%, 63%);
+}
+.image-form .step.finish .pricing-details .plan .highlight {
+  color: hsl(213, 96%, 18%);
+  font-weight: 700;
+}
+.image-form .step.finish .pricing-details .plan::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 90%;
+  background-color: hsl(229, 24%, 87%);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.image-form .step.finish .pricing-details .add-ons .inner span {
+  color: hsl(231, 11%, 63%);
+}
+.image-form .step.finish .total-pricing {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.image-form .step.finish .total-pricing .inner span {
+  color: hsl(231, 11%, 63%);
+}
+.image-form .step.thank-you {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.image-form .step.thank-you p {
+  text-align: center;
+  line-height: 1.5;
+  color: hsl(231, 11%, 63%);
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}/*# sourceMappingURL=small.css.map */
