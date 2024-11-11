@@ -9,7 +9,7 @@ const emailInput = document.querySelector("#user-email");
 const userPhoneNumber = document.getElementById("user-tel");
 const allInputs = document.querySelectorAll("input");
 const intervalToggle = document.querySelector(".interval-toggle");
-const link  = document.querySelector(".link")
+const link = document.querySelector(".link")
 
 const prices = document.querySelectorAll(".price");
 const plans = document.querySelectorAll(".plan");
@@ -18,10 +18,10 @@ let radioOption;
 let currentStep = 0;
 showTab(currentStep);
 
-link.addEventListener("click",()=>{
+link.addEventListener("click", () => {
     steps[currentStep].style.display = "none";
 
-    currentStep =  1;
+    currentStep = 1;
     showTab(currentStep);
 })
 
@@ -35,52 +35,58 @@ function showTab(currentStep) {
     }
     if (currentStep == (steps.length - 2)) {
         nextBtn.textContent = "Confirm";
-    }else if(currentStep == (steps.length -1)){
+    } else if (currentStep == (steps.length - 1)) {
         nextBtn.style.display = 'none';
         prevBtn.style.display = 'none';
-    } 
+    }
     else {
         nextBtn.textContent = 'Next';
     }
 }
 
+let intre = '';
 
 nextBtn.addEventListener("click", (n) => {
-    if(validateInputs() ===false){
+    addOnIntervals.forEach((addOnInterval, index) => {
+        intre = addOnInterval.textContent.slice(addOnInterval.textContent.length - 2);
+
+    })
+    console.log(intre);
+    if (validateInputs() === false) {
         nextBtn.disabled = false;
     }
-    else{
+    else {
         nextBtn.disabled = true;
     }
     n = 1;
     if (n == 1 && !validateInputs()) return false;
     steps[currentStep].style.display = 'none';
     currentStep = currentStep + n;
-     if(currentStep ===3 ){
+    if (currentStep === 3) {
         //Get the plan price 
         //get the addon prices
         //add them up and dumb value into pricer
         let pricer = document.querySelector(".pricer")
         let planPrice = document.querySelector(".plan-choice-price");
-        let inter = planPrice.textContent.slice(planPrice.textContent.length -2)
+        let inter = planPrice.textContent.slice(planPrice.textContent.length - 2)
         let chosenPrices = document.querySelectorAll(".chosen-addon-price");
         planPrice = Number(planPrice.textContent.match(/\d+/g)[0]);
         let values = [];
         values.push(planPrice);
-        chosenPrices.forEach((chosenPrice)=>{
-           values.push(Number(chosenPrice.textContent.match(/\d+/g)[0]))
+        chosenPrices.forEach((chosenPrice) => {
+            values.push(Number(chosenPrice.textContent.match(/\d+/g)[0]))
         })
-        let sum = values.reduce((a,c)=>{
+        let sum = values.reduce((a, c) => {
             return a + c;
-        },0)
+        }, 0)
         pricer.textContent = `+$${sum}/${inter}`;
 
-     }
-    if (currentStep >=4) {
+    }
+    if (currentStep >= 4) {
         showTab(currentStep);
-        setTimeout(()=>{
+        setTimeout(() => {
             ourForm.submit();
-        },2000)
+        }, 2000)
         return false;
     }
     showTab(currentStep);
@@ -109,39 +115,9 @@ nextBtn.addEventListener("click", (n) => {
             planChoicePrice.textContent = "$15/mo";
         }
     }
-    // checkboxes addon
-if(currentStep == 2){
-    addOnCheckBoxs.forEach((addOnBox) => {
-        addOnBox.addEventListener("change", () => {
-            let value = addOnBox.value; //the checkbox value
-            const price = Number(addOnBox.closest(".option").querySelector(".interval-price").textContent.match(/\d+/g)[0]);
-         
-            //checkboxes add border and bgc to container 
-            if (addOnBox.checked) {
-                addOnBox.parentElement.parentElement.parentElement.parentElement.classList.add("active-plan");
-                //there is only three options that can be checked yes,
-                const addOnElement = document.createElement("div");
-                addOnElement.classList.add("add-ons");
-                addOnElement.setAttribute('data-addon',addOnBox.id);
-                let intre = intervalToggle.checked ? "yr" : "mo"
-                addOnElement.innerHTML = `
-                    <div class="inner">
-                      <span class="chosen-addon">${value}</span>
-                    </div>
-                    <span class="chosen-addon-price">$${price}/${intre}</span>
-                `
-                addOnParentContainer.appendChild(addOnElement);
-            } else {
-                addOnBox.parentElement.parentElement.parentElement.parentElement.classList.remove("active-plan");
-                const addOnElement = addOnParentContainer.querySelector(`[data-addon="${addOnBox.id}"]`);
-                if(addOnElement){
-                    addOnParentContainer.removeChild(addOnElement);
-                }
-            }
-        })
-    })
-}
+
 })
+
 prevBtn.addEventListener("click", (n) => {
     steps[currentStep].style.display = "none";
     n = -1;
@@ -272,6 +248,16 @@ intervalToggle.addEventListener("change", (e) => {
     addOnIntervals.forEach((addOnInterval, index) => {
         addOnInterval.textContent = addSelectedInterval[index];
     })
+    addOnCheckBoxs.forEach((addOnBox) => {
+        addOnBox.checked = false;
+        // addOnParentContainer.innerHTML = "";
+        //if the interval toggle button changes the state or any change for that matter
+        //lets uncheck all the addon buttons 
+        addOnBox.parentElement.parentElement.parentElement.parentElement.classList.remove("active-plan");
+        while (addOnParentContainer.firstChild) {
+            addOnParentContainer.removeChild(addOnParentContainer.firstChild);
+        }
+    })
 
 
 })
@@ -282,12 +268,45 @@ const addOnParentContainer = document.querySelector(".add-on-container");
 
 
 
-function cutHtml(){
-    const form  = document.querySelector(".form");
+
+
+addOnCheckBoxs.forEach((addOnBox) => {
+    addOnBox.addEventListener("change", () => {
+        let value = addOnBox.value; //the checkbox value
+        const price = Number(addOnBox.closest(".option").querySelector(".interval-price").textContent.match(/\d+/g)[0]);
+
+        //checkboxes add border and bgc to container 
+        if (addOnBox.checked == true) {
+            addOnBox.parentElement.parentElement.parentElement.parentElement.classList.add("active-plan");
+            //there is only three options that can be checked yes,
+            const addOnElement = document.createElement("div");
+            addOnElement.classList.add("add-ons");
+            addOnElement.setAttribute('data-addon', addOnBox.id);
+
+
+            addOnElement.innerHTML = `
+                <div class="inner">
+                  <span class="chosen-addon">${value}</span>
+                </div>
+                <span class="chosen-addon-price">$${price}/${intre}</span>
+            `
+            addOnParentContainer.appendChild(addOnElement);
+        } else {
+            addOnBox.parentElement.parentElement.parentElement.parentElement.classList.remove("active-plan");
+            const addOnElement = addOnParentContainer.querySelector(`[data-addon="${addOnBox.id}"]`);
+            if (addOnElement) {
+                addOnParentContainer.removeChild(addOnElement);
+            }
+        }
+    })
+})
+
+function cutHtml() {
+    const form = document.querySelector(".form");
     const buttonContainer = document.querySelector(".button-container");
     const screenwith = window.innerWidth;
-    if(screenwith >= 768){
-        if(form && buttonContainer){
+    if (screenwith >= 768) {
+        if (form && buttonContainer) {
             form.append(buttonContainer);
         }
     }
