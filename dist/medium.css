@@ -37,10 +37,10 @@ body {
 
 .main {
   position: relative;
-  min-width: 300px;
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-width: 300px;
   background-color: hsl(217, 100%, 97%);
 }
 
@@ -238,10 +238,17 @@ body {
   display: none;
 }
 .image-form .step.add-ons .option {
-  display: grid;
-  grid-template-columns: 0.5fr 2fr 0.5fr;
-  padding: 0.5rem;
+  display: flex !important;
+  align-items: center;
+  padding-inline: 1rem !important;
   gap: 0rem;
+}
+.image-form .step.add-ons .option .icon-description {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 2rem;
+  flex: 1 0 70%;
 }
 .image-form .step.add-ons .option .plan {
   line-height: 1.5;
@@ -249,9 +256,10 @@ body {
 .image-form .step.add-ons .option .plan h4 {
   color: hsl(213, 96%, 18%);
   font-weight: 700;
+  font-size: 0.9rem !important;
 }
-.image-form .step.add-ons .option .plan .price {
-  color: hsl(231, 11%, 63%);
+.image-form .step.add-ons .option .plan span {
+  font-size: 0.875rem;
 }
 .image-form .step.add-ons .option .interval-payment span {
   color: hsl(243, 100%, 62%);
@@ -321,6 +329,10 @@ body {
 .image-form .step.finish .pricing-details .plan {
   position: relative;
 }
+.image-form .step.finish .pricing-details .plan .plan-choice, .image-form .step.finish .pricing-details .plan .plan-choice-price {
+  color: hsl(213, 96%, 18%);
+  font-weight: 700;
+}
 .image-form .step.finish .pricing-details .plan .inner span {
   display: block;
   margin-bottom: 12px;
@@ -346,10 +358,17 @@ body {
 .image-form .step.finish .pricing-details .add-ons .inner span {
   color: hsl(231, 11%, 63%);
 }
+.image-form .step.finish .pricing-details .add-ons .chosen-addon-price {
+  color: hsl(213, 96%, 18%);
+}
 .image-form .step.finish .total-pricing {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+}
+.image-form .step.finish .total-pricing .pricer {
+  color: hsl(243, 100%, 62%);
+  font-weight: 700;
 }
 .image-form .step.finish .total-pricing .inner span {
   color: hsl(231, 11%, 63%);

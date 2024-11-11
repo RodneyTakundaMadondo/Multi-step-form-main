@@ -63,7 +63,8 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    width: min(100%, 300px);
+    width: 100%;
+    min-width: 300px;
     background-color: $magnolia;
 }
 
@@ -130,6 +131,7 @@ body {
                     align-items: center;
                     font-size: 1rem;
                 }
+           
 
                 .step-description {
                     display: none;
