@@ -9,7 +9,8 @@ const emailInput = document.querySelector("#user-email");
 const userPhoneNumber = document.getElementById("user-tel");
 const allInputs = document.querySelectorAll("input");
 const intervalToggle = document.querySelector(".interval-toggle");
-const link = document.querySelector(".link")
+const link = document.querySelector(".link");
+const stepVisualizers = document.querySelectorAll(".number");
 
 const prices = document.querySelectorAll(".price");
 const plans = document.querySelectorAll(".plan");
@@ -42,16 +43,27 @@ function showTab(currentStep) {
     else {
         nextBtn.textContent = 'Next';
     }
+    fixStepIndicator(currentStep)
 }
-
+function fixStepIndicator(currentStep){
+    stepVisualizers.forEach((stepVisualizer)=>{
+        stepVisualizer.classList.remove("visualizer");
+    })
+    if(currentStep < 4){
+        stepVisualizers[currentStep].classList.add("visualizer")
+    }
+}
 let intre = '';
 
+window.addEventListener("DOMContentLoaded",()=>{
+   
+})
 nextBtn.addEventListener("click", (n) => {
+  
     addOnIntervals.forEach((addOnInterval, index) => {
         intre = addOnInterval.textContent.slice(addOnInterval.textContent.length - 2);
 
     })
-    console.log(intre);
     if (validateInputs() === false) {
         nextBtn.disabled = false;
     }

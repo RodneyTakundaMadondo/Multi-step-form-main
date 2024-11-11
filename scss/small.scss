@@ -131,7 +131,10 @@ body {
                     align-items: center;
                     font-size: 1rem;
                 }
-           
+                .visualizer{
+                    background-color: $lightblue !important;
+                    color: $marineblue !important;
+                }
 
                 .step-description {
                     display: none;

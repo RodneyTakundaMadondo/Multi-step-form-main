@@ -104,6 +104,10 @@ body {
   align-items: center;
   font-size: 1rem;
 }
+.image-form .sidebar .container .pagination-indicator .visualizer {
+  background-color: hsl(206, 94%, 87%) !important;
+  color: hsl(213, 96%, 18%) !important;
+}
 .image-form .sidebar .container .pagination-indicator .step-description {
   display: none;
 }
