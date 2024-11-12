@@ -8,7 +8,6 @@
 body {
   background-color: hsl(217, 100%, 97%);
   font-family: "Ubuntu", sans-serif;
-  position: relative;
 }
 
 .active {
@@ -391,6 +390,8 @@ body {
 .attribution {
   font-size: 11px;
   text-align: center;
+  position: relative;
+  bottom: 0;
 }
 
 .attribution a {

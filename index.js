@@ -36,12 +36,13 @@ function showTab(currentStep) {
     }
     if (currentStep == (steps.length - 2)) {
         nextBtn.textContent = "Confirm";
+        nextBtn.style.backgroundColor = "hsl(243, 100%, 62%)"
     } else if (currentStep == (steps.length - 1)) {
         nextBtn.style.display = 'none';
         prevBtn.style.display = 'none';
     }
     else {
-        nextBtn.textContent = 'Next';
+        nextBtn.textContent = 'Next Step';
     }
     fixStepIndicator(currentStep)
 }
@@ -300,7 +301,7 @@ addOnCheckBoxs.forEach((addOnBox) => {
                 <div class="inner">
                   <span class="chosen-addon">${value}</span>
                 </div>
-                <span class="chosen-addon-price">$${price}/${intre}</span>
+                <span class="chosen-addon-price">+$${price}/${intre}</span>
             `
             addOnParentContainer.appendChild(addOnElement);
         } else {

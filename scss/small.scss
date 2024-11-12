@@ -31,7 +31,6 @@ $fw-700:700;
 body {
     background-color: $magnolia;
     font-family: $ff-primary;
-    position: relative;
 }
 
 .active {
@@ -510,6 +509,8 @@ body {
 .attribution {
     font-size: 11px;
     text-align: center;
+    position: relative;
+    bottom: 0;
 }
 
 .attribution a {
